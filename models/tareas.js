@@ -19,6 +19,13 @@ class Tareas{
         this._listado = {};
     }
 
+    borrarTarea(id = ''){
+
+        if(this._listado[id]){
+            delete this._listado[id];
+        }
+    }
+
     cargarTareasFromArray(tareas = []){
 
         tareas.forEach( tarea => {
@@ -39,7 +46,7 @@ class Tareas{
         
         this.listadoAr.forEach( (tarea, i) =>{
 
-            const idx = `${i + 1}`.green;
+            const idx = `${i + 1}.`.green;
             const {desc, compleadoEn} = tarea;
             const estado = (compleadoEn)
                         ? 'Completada'.green
