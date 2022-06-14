@@ -14,23 +14,30 @@ const main = async () => {
     const tareasDB = leerDB();
 
     if(tareasDB){
-      //Establecer las tareas
+      //Cargar tareas
+      tareas.cargarTareasFromArray(tareasDB);
 
     }
-    await pause();
 
     do{
       //Imprimir el menu
       opc = await inquirerMenu();
       
       switch (opc) {
-        case '1':
-          //Creacion de opciones
+        case '1'://Creacion de opciones
+
           const desc = await leerInput('Descripcion:');
           tareas.crearTarea(desc);
+          
           break;
         case '2':
-          console.log( tareas.listadoAr );
+          tareas.listadoCompleto();
+        break;
+        case '3'://Listar Completadas
+          tareas.listarPendientesCompletadas(true);
+        break;
+        case '4'://Listar Pendientes
+          tareas.listarPendientesCompletadas(false);
         break;
       }
 
